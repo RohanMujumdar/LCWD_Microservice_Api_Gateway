@@ -25,6 +25,13 @@ public class GatewayConfig {
                                 .filters(f -> f.rewritePath("/restaurant/?(?<remaining>.*)", "/$\\{remaining}"))
                                 .uri("lb://RESTAURANTSERVICE")
                 ).
+                route(
+                        "orderService",
+                        route->route.path("/orders/**")
+                                .filters(f -> f.rewritePath("/orders/?(?<remaining>.*)", "/$\\{remaining}")
+                                        .addRequestHeader("Authorization", "Bearer xyz123"))
+                                .uri("lb://ORDERSERVICE")
+                ).
                 build();
 
     }
