@@ -31,6 +31,22 @@ spring:
         locator:
           enabled: false
 
+
+#     Retry Mechanism
+      httpclient:
+#     Time taken to connect to a microservice
+        connect-timeout: 1000
+#     Time taken to get a response from a microservice
+        response-timeout: 5s
+
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+
+
 server:
   port: 9094
 
@@ -65,3 +81,27 @@ info:
   app:
     name: "Api Gateway"
 
+
+resilience4j:
+  circuitbreaker:
+    configs:
+
+#     By default it means that this configuration will be applied to all the cicuit breaker patterns.
+      default:
+        sliding-window-size: 10
+        permitted-number-of-calls-in-half-open-state: 2
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10000
+
+#     Without this, the circuit breaker will not be fully wired with the default behavior.
+      instances:
+        circuitBreakerFood:
+          baseConfig: default
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
+    org.springframework.web.reactive.function.client: DEBUG
+    org.springframework.cloud.gateway.filter.ratelimit: DEBUG
