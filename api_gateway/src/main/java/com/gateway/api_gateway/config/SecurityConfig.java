@@ -25,6 +25,13 @@ public class SecurityConfig {
                             .pathMatchers(HttpMethod.POST, "/restaurant/**").hasRole("ADMIN")
                             .anyExchange().authenticated();
                 })
+
+//               The app is configuring OAuth2 Resource Server support.
+//               It is using JWT (JSON Web Token) for authentication.
+//               Customizer.withDefaults() applies the default settings for
+//               JWT handling (like decoding tokens using a configured JwtDecoder).
+
+//               In short: Enable JWT-based authentication with default settings.
                 .oauth2ResourceServer(config->
                         config.jwt(Customizer.withDefaults()))
 
