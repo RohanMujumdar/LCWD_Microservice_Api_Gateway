@@ -2,6 +2,14 @@ spring:
   application:
     name: api_gateway
 
+# This below URI will help our resource server to validate our access token with auth server.
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: "http://localhost:8086/realms/microservice_food_app/protocol/openid-connect/certs"
+
+
 #  It allows the gateway to automatically route to services registered
 #  with Eureka using their service names.
   cloud:
@@ -105,3 +113,6 @@ logging:
     reactor.netty.http.client: DEBUG
     org.springframework.web.reactive.function.client: DEBUG
     org.springframework.cloud.gateway.filter.ratelimit: DEBUG
+
+
+
