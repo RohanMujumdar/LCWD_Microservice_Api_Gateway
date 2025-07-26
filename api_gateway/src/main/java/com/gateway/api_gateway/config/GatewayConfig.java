@@ -73,7 +73,8 @@ public class GatewayConfig {
     }
 
 
-
+//  In this case it resolves the client's IP address (from the incoming request)
+//  and uses it as the key to apply rate limiting per IP.
     @Bean
     public KeyResolver keyResolver()
     {
