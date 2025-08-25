@@ -16,6 +16,6 @@ public class FallBackController {
     {
         return Mono.just(ResponseEntity
                 .status(HttpStatus.SERVICE_UNAVAILABLE)
-                .body("Food Service is down. Contact the service provider."));
+                .body("The particular Service is down. Contact the service provider."));
     }
 }

@@ -101,7 +101,7 @@ resilience4j:
         failure-rate-threshold: 50
         wait-duration-in-open-state: 10000
 
-#     Without this, the circuit breaker will not be fully wired with the default behavior.
+#     Without this, our circuit breaker will not be fully wired with the default behavior.
       instances:
         circuitBreakerFood:
           baseConfig: default
