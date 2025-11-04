@@ -68,6 +68,12 @@ public class GatewayConfig {
                                         .addRequestHeader("Authorization", "Bearer xyz123"))
                                 .uri("lb://ORDERSERVICE")
                 ).
+                route(
+                        "userService",
+                        route->route.path("/user-auth/**")
+                                .filters(f->f.rewritePath("/user-auth/?(?<remaining>.*)", "/${remaining}"))
+                                .uri("lb://USERSERVICE")
+                ).
                 build();
 
     }
