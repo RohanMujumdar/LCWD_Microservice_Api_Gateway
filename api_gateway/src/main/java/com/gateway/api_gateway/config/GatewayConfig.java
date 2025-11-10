@@ -71,7 +71,7 @@ public class GatewayConfig {
                 route(
                         "userService",
                         route->route.path("/user/**")
-                                .filters(f->f.rewritePath("/user/?(?<remaining>.*)", "/${remaining}"))
+                                .filters(f->f.rewritePath("/user/?(?<remaining>.*)", "/$\\{remaining}"))
                                 .uri("lb://USERSERVICE")
                 ).
                 build();
